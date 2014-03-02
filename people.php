@@ -16,14 +16,15 @@ $objGrid->tabla ("People");
 $objGrid->keyfield("UID");
 $objGrid->datarows(20);
 $objGrid->orderby("LastName", "ASC");
-$objGrid->FormatColumn("UID", "Grant ID", 5, 5, 0, "5", "center", "integer");
+$objGrid->FormatColumn("UID", "Grant ID", 5, 5, 0, "5", "center", "text");
 $objGrid->FormatColumn("FirstName", "First Name", 20, 20, 0, "100", "center", "text");
 $objGrid->FormatColumn("LastName", "Last Name", 20, 20, 0, "100", "center", "text");
 $objGrid->FormatColumn("FullName", "Full Name", 100, 100, 0, "100", "center","text");
 $objGrid->FormatColumn("Title", "Title", 100, 100, 0, "100", "center","text");
+$objGrid->FormatColumn("DepartmentID", "Department", 100, 100, 0, "100", "center","select:SELECT DepartmentID, DepartmentName FROM Department_Center");
 $objGrid->FormatColumn("Phone", "Phone", 100, 100, 0, "100", "center","text");
 $objGrid->FormatColumn("Email", "Email", 100, 100, 0, "100", "center","text");
-
+$objGrid -> poweredby = false;
 $objGrid->checkable(); 
 
 if (!isset($_REQUEST["DG_ajaxid"])){ // If we intercept an AJAX request from page  
@@ -31,10 +32,11 @@ if (!isset($_REQUEST["DG_ajaxid"])){ // If we intercept an AJAX request from pag
     buildTop();
     $objGrid -> setHeader(); 
     buildBody();
+    //$objGrid -> ajax('silent'); //disabled online editing
 
     } // if (!isset($_REQUEST["DG_ajaxid"])) end interception, until here, script wont be processed when DG_ajaxid is set 
 
-    //$objGrid -> ajax('silent'); //disabled online editing
+    $objGrid -> ajax('silent'); //disabled online editing
     $objGrid -> grid(); 
     $objGrid -> desconectar(); 
 

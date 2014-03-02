@@ -77,18 +77,18 @@
         <h3>Content</h3>
         <ul class="toggle">
             <li class="icn_tags"><a href="people.php">People</a></li>
-            <li class="icn_tags"><a href="keyword.php">Keyword</a></li>
-            <li class="icn_tags"><a href="audience.php">Audience</a></li>
-            <li class="icn_tags"><a href="stem.php">STEM Program</a></li>
-            <li class="icn_tags"><a href="fundingagency.php">Fund Agency</a></li>
-            <li class="icn_tags"><a href="grant.php">Grant</a></li>
-            <li class="icn_tags"><a href="#">School/Division</a></li>
+            <li class="icn_tags"><a href="#">Program/Keyword/Audience</a></li>
+            <li class="icn_tags"><a href="STEM.php">STEM Program</a></li>
+            <li class="icn_tags"><a href="fundingsource.php">Funding Source</a></li>
+            <li class="icn_tags"><a href="grant.php">Grant/Personnel</a></li>
+            <li class="icn_tags"><a href="deptSchOrg.php">Department/School/Organization</a></li>
         </ul>
         <h3>Admin</h3>
         <ul class="toggle">
-            <li class="icn_add_user"><a href="#">Add New User</a></li>
+            <li class="icn_add_user"><a href="adduser.php">Add New User</a></li>
             <li class="icn_view_users"><a href="#">View Users</a></li>
             <li class="icn_profile"><a href="#">Your Profile</a></li>
+            <li class="icn_new_article"><a href="upload.php">Upload Data</a></li>
             <li class="icn_jump_back"><a href="#">Logout</a></li>
         </ul>
         

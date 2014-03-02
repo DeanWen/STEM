@@ -94,25 +94,24 @@ class datagrid{
 									 "#95C97A","#2EC3B0","#A93DD7","#BCC4B4");  // Predefined colors to show BarCharts.
 	
 	var $images = array(
-			'add'         => 'icn_add_user.png',
-			'ajax'        => 'ajax.gif',
-			'ASC'         => 'asc.png',
-			'cancel'      => 'cancel.png',
-			'close'       => 'close.png',
-			'DESC'        => 'desc.png',
-			'down'        => 'down.png',
-			'down_off'    => 'down_off.png',
-			'edit'        => 'icn_edit.png',
-			'erase'       => 'icn_trash.png',
-			'minidown'    => 'minidown.png',
-			'miniup'      => 'miniup.png',
-			'save'        => 'save.png',
-			'search'      => 'icn_search.png',
-			'up'          => 'up.png',
-			'up_off'      => 'up_off.png',
-			'view'        => 'view.png',
-			'save'        => 'save'
-	);
+      'add'         => 'icn_add_user.png',
+      'ajax'        => 'ajax.gif',
+      'ASC'         => 'asc.png',
+      'cancel'      => 'cancel.png',
+      'close'       => 'close.png',
+      'DESC'        => 'desc.png',
+      'down'        => 'down.png',
+      'down_off'    => 'down_off.png',
+      'edit'        => 'icn_edit.png',
+      'erase'       => 'icn_trash.png',
+      'minidown'    => 'minidown.png',
+      'miniup'      => 'miniup.png',
+      'save'        => 'save.png',
+      'search'      => 'icn_search.png',
+      'up'          => 'up.png',
+      'up_off'      => 'up_off.png',
+      'view'        => 'icn_view_users.png',
+      'save'        => 'save'	);
 	
 	var $message = array( 
 			'cancel' 	  => 'Cancel',
@@ -1500,7 +1499,7 @@ class datagrid{
 							echo "<div style='width:".$percentChart."%; background:".$arrChart[$fldname][$keyValue."c"]."' >".$valuetoShow."</div>$br";
 						break;
 						default:
-							$rowValue = trim($rowValue); $rowValue = ($rowValue=="" or is_null($rowValue))?"&nbsp;":$rowValue;
+							$rowValue = trim($rowValue); $rowValue = (empty($rowValue))?"&nbsp;":$rowValue;
 							if ($cutChar>0 and strlen($rowValue)>$cutChar) $rowValue = substr($rowValue,0,$cutChar)."...";
 							echo $this->mask($rowValue,$mask,$dataType,$selData,$rowRes);
 						break;
@@ -1608,7 +1607,7 @@ class datagrid{
 			echo "<tr align='center'><td colspan='".($fieldsCount+$colsToAdd)."' class='dgFooter'>$this->footer</td></tr>$br";
 		
 		if (!empty($this->poweredby))
-			//echo "<tr align='center'><td colspan='".($fieldsCount+$colsToAdd)."'><br $sl><br $sl></td></tr>$br";
+			echo "<tr align='center'><td colspan='".($fieldsCount+$colsToAdd)."'><br $sl><a href='http://www.gurusistemas.com' target='_blank'><img src='".$this->imgpath."poweredby.png' alt='Powered by phpMyDataGrid' border='0' $sl></a><br $sl></td></tr>$br";
 		echo "</table>$br";
 
 		# Control fields
@@ -1785,7 +1784,7 @@ class datagrid{
 				$theValue = ($theValue ==""||$theValue=="0"||$theValue =="false") ?$theNotDefinedValue:$theDefinedValue;
 			break;
 			default: 
-				$theValue = ($theValue=="" or is_null(theValue)) ? $theValue : ""; 
+				$theValue = (!empty($theValue)) ? $theValue : ""; 
 			break; 
 		}
 		return $theValue;

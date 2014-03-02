@@ -212,10 +212,10 @@ body{
 	border-left-color:#ffffff;
 }
 .dgAddDiv{
-	position:absolute; 
+	position:relative; 
 	top: 0px;
 	left: 0px;
-	background-color: #999999; 
+	background-color: #ffffff; 
 
 /* --- This options below produce an error in FF 3 --- */
 /*

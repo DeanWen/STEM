@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2007, Gur?Sistemas and/or Gustavo Adolfo Arcila Trujillo
+Copyright (c) 2007, Gurú Sistemas and/or Gustavo Adolfo Arcila Trujillo
 All rights reserved.
 www.gurusistemas.com
 
@@ -8,7 +8,7 @@ Redistribution and use in source and binary forms, with or without modification,
     * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer
 	  in the documentation and/or other materials provided with the distribution.
-    * Neither the name of the Gur?Sistemas Intl nor Gustavo Adolfo Arcila Trujillo nor the names of its contributors may be used to
+    * Neither the name of the Gurú Sistemas Intl nor Gustavo Adolfo Arcila Trujillo nor the names of its contributors may be used to
 	  endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS  "AS IS"  AND ANY EXPRESS  OR  IMPLIED WARRANTIES, INCLUDING, 
@@ -17,12 +17,6 @@ SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,  INDIRECT,  
 DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  USE, DATA, OR PROFITS;  OR BUSINESS 
 INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
-
-phpMyDataGrid is Open Source released under the BSD License, and we need your help if you like this script and think to use it 
-please make a donation. Our goal is To buy a house for 2 little childrens, so we need to collect USD 20.000 by receiving 4.000 
-donations of USD 5 each, (If you think you can do a higher donation, don't think twice, just do it ;-) if you compare, you can 
-find commercial versions with less features than phpMyDataGrid with prices higher than USD499.  So, just to make a donation is 
-a cheap. 
 
 Please remember donating is one way to show your support, copy and paste in your internet browser the following link to make your donation
 https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=tavoarcila%40gmail%2ecom&item_name=phpMyDataGrid%202007&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
@@ -163,7 +157,7 @@ function DG_Do(action, p1, p2, p3){
 					}else{
 						fldValue= DG_gvv(fldName[0]);
 					}
-					dgvcode = dgvcode+"&"+fldName[0]+"="+fldValue;
+					dgvcode = dgvcode+"&"+fldName[0]+"="+encodeURIComponent(fldValue);
 				}
 			}
 			DG_sii("addDiv","");
@@ -300,20 +294,26 @@ function DG_D_edit (objField,dgvcode){
 				var keypress, events;
 				if (ajaxStyle=="silent"){
 					keypress='return DG_silent_enter(event,\''+new_id+'\',\''+ escape(inputtext) +'\',\''+dgvcode+'\')';
-					events=' onDblClick="'+savefield+'" onChange="'+savefield+'" onBlur="'+cancelfield+'" onKeyPress="'+keypress+'" ' ;
+// BUG onblur?					events=' onDblClick="'+savefield+'" onChange="'+savefield+'" onBlur="'+cancelfield+'" onKeyPress="'+keypress+'" ' ;
+					events=' onDblClick="'+savefield+'" onChange="'+savefield+'" onKeyPress="'+keypress+'" ' ;
 				}else{	
 					keypress=' return DG_bl_enter(event)';
 					events=' onKeyPress="'+keypress+'" ';
 				}
 				var selectall=false;
 				var  frm   = '';
-				switch (aColumn["datatype"]){
+				switch (aColumn["datatype"]){ 	
 					case "select":
 						frm+= '<select class="dgSelectpage" style="width:95%"'+thename+events+'>';
-						for ( therow in aColumn["select"] ){
-							selected=(inputtext==aColumn["select"][therow]) ? "selected":"";
-							frm+= '<option value="' +therow+ '"' +selected+'>'+aColumn["select"][therow]+'<\/option>';
-						}
+                        arrOptions = Array();
+    					for ( therow in aColumn["select"] ){
+                            arrOptions[arrOptions.length] = aColumn["select"][therow] + "|||" + therow;
+                        }
+                        arrOptions.sort();
+    					for (n=0;n<arrOptions.length;n++){
+    					    arrRow = arrOptions[n].split("|||");
+    						frm += "<option value='" + arrRow[1] + "'" + ((inputtext==arrRow[1])?" selected='selected' ":"") + ">"+arrRow[0] + "<\/option>";
+                        }
 						frm+= '<\/select>';	
 					break;
 					case "check":
@@ -370,12 +370,13 @@ function DG_save_field(idfield, oldtext, dgvcode){
 	var mydummy_array=idfield.split("_AjaxDhtml");
 	var txt = document.getElementById(mydummy_array[0]);
 	if (DG_trim(texto)==""){ texto="&nbsp;";}
+	txt.innerHTML = null;
 	txt.innerHTML = texto;
-	mask="text";//aColumns[column]["mask"];
+	mask=aColumns[column]["mask"];
 	DG_svv("ajaxDHTMLediting",0);
 	if (dbvalue == unescape(oldtext)) return;
 	txt.style.color= dgAjaxChanged;
-	DG_ajaxLoader(scrName, "ajaxDHTMLDiv", "4&dgrtd="+idfield+"&nt="+dbvalue+"&dgvcode="+dgvcode+params+"&tAjax="+Math.random(), "ajaxDHTMLDiv", txtSaving);
+	DG_ajaxLoader(scrName, "ajaxDHTMLDiv", "4&dgrtd="+idfield+"&nt="+encodeURIComponent(dbvalue)+"&dgvcode="+dgvcode+params+"&tAjax="+Math.random(), "ajaxDHTMLDiv", txtSaving);
 	if (decimalPoint==".") sepMiles = "\\,"; else sepMiles = ".";
 	if (thereisCalc){
 		for (actualitem in aColumns){ 
