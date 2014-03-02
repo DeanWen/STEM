@@ -1,7 +1,7 @@
 <?php
 include "db_connect.php";
 
-function uploadFile($filetempname)    
+function uploadFile($filetempname,$leadExcel)    
 {           
 	require_once 'Classes/PHPExcel.php';
 	require_once 'Classes/PHPExcel/IOFactory.php';
@@ -25,24 +25,45 @@ function uploadFile($filetempname)
        $highestRow = $sheet->getHighestRow(); // total rows    
        $highestColumn = $sheet->getHighestColumn(); // total columns   
        
-	$conn = connect();
-
-	for($j=2;$j<=$highestRow;$j++)
-	{
-	    $UID = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();
-	    $LastName = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();
-	    $FirstName = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
-	    $FullName = $objPHPExcel->getActiveSheet()->getCell("D".$j)->getValue();
-	    $Email = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();
-	    $Phone = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();
-	    $Title = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();
-	    $DepartmentID = $objPHPExcel->getActiveSheet()->getCell("H".$j)->getValue();
-	    $sql = "INSERT INTO People VALUES('".$UID."','1','".$LastName."','".$FirstName."','".$FullName."','".$Email."','".$Phone."','".$Title."')";
-	    //echo $sql;
-	 	mysql_query($sql,$conn);
-	}
-  
-     
+  	$conn = connect();
+    if($leadExcel == 'people'){
+    	for($j=2;$j<=$highestRow;$j++)
+    	{
+    	    $UID = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();
+    	    $LastName = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();
+    	    $FirstName = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
+    	    $FullName = $objPHPExcel->getActiveSheet()->getCell("D".$j)->getValue();
+    	    $Email = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();
+    	    $Phone = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();
+    	    $Title = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();
+    	    $DepartmentID = $objPHPExcel->getActiveSheet()->getCell("H".$j)->getValue();
+    	    $sql = "INSERT INTO People VALUES('".$UID."','".$DepartmentID."','".$LastName."','".$FirstName."','".$FullName."','".$Email."','".$Phone."','".$Title."')";
+    	    //echo $sql;
+    	 	mysql_query($sql,$conn);
+    	}
+    }
+    if($leadExcel == 'school'){
+      for($j=2;$j<=$highestRow;$j++)
+      {
+          $SchoolDivisionID = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();
+          $SchoolDivisionName = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();
+          $OrgID = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
+          $sql = "INSERT INTO School_Division VALUES('".$SchoolDivisionID."','".$SchoolDivisionName."','".$OrgID."')";
+          //echo $sql;
+        mysql_query($sql,$conn);
+      }
+    }
+    if($leadExcel == 'department'){
+      for($j=2;$j<=$highestRow;$j++)
+      {
+          $DepartmentID = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();
+          $DepartmentName = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();
+          $SchoolDivisionID = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
+          $sql = "INSERT INTO Department_Center VALUES('".$DepartmentID."','".$DepartmentName."','".$SchoolDivisionID."')";
+          //echo $sql;
+        mysql_query($sql,$conn);
+      }
+    }
        unlink ($uploadfile); //delete uploaded file 
        mysql_close($conn); 
        $msg = "success";  

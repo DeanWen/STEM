@@ -9,11 +9,11 @@ if($_POST['import']=="upload"){
 
 	$leadExcel=$_POST['leadExcel'];
 	
-	if($leadExcel == "true")
+	if($leadExcel)
 	{
 		$tmp_name = $_FILES['inputExcel']['tmp_name'];
 		
-		$msg = uploadFile($tmp_name);
+		$msg = uploadFile($tmp_name,$leadExcel);
 	}
 }
 
