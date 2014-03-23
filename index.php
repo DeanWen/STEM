@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Dashboard I Admin Panel</title>       
+    <title>SERI Funding Management-Guest View</title>       
     <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
@@ -26,7 +26,7 @@ $objGrid->methodForm("get");
 $objGrid->conectadb("localhost", "root", "", "STEM_DB");
 $objGrid->salt("Myc0defor5tr0ng3r-Pro3EctiOn"); 
 $objGrid->language("en");
-$objGrid->buttons(true,true,false,true);
+$objGrid->buttons(true,false,false,true);
 $objGrid->Form('STEM', true);
 $objGrid->searchby("ProgramID,InitiativeName");
 $objGrid->tabla ("STEM");
