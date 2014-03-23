@@ -1510,7 +1510,7 @@ class datagrid{
 				if ($width != 0){
 					echo "<td align='center' class='dgRow$clAlt'>";
 					if ($this->chkBtn) printf ("<img src='".$this->imgpath.$this->images["view"]."' alt='".$this->message['view']."' class='dgImgLink' onclick='".$this->vieonClic."' $sl>",$keyValue,md5($this->salt."ViewRow".$keyValue));
-					if ($this->updBtn) printf ("<img src='".$this->imgpath.$this->images["edit"]."' alt='".$this->message['edit']."' class='dgImgLink' onclick='".$this->edtonClic."' $sl>",$keyValue,md5($this->salt."EditRow".$keyValue));
+					//if ($this->updBtn) printf ("<img src='".$this->imgpath.$this->images["edit"]."' alt='".$this->message['edit']."' class='dgImgLink' onclick='".$this->edtonClic."' $sl>",$keyValue,md5($this->salt."EditRow".$keyValue));
 					if ($this->delBtn) printf ("<img src='".$this->imgpath.$this->images["erase"]."' alt='".$this->message['delete']."' class='dgImgLink' onclick='".$this->delonClic."' $sl>",$keyValue,md5($this->salt."Delete".$keyValue));
 					echo "</td>$br</tr>$br";
 				}

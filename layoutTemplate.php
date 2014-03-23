@@ -1,6 +1,11 @@
 <?php
+session_start();
+
     function buildTop()
     {
+    if(!$_SESSION['myusername'])
+        header('location:login.php'); // redirect
+    else
         echo '<!doctype html>
         <html lang="en">
         <head>
@@ -52,7 +57,7 @@
     
     function buildBody()
     {
-        print '<body>
+        echo '<body>
 <header id="header">
         <hgroup>
             <h1 class="site_title"><a href="index.php">SERI Funding Management</a></h1>
@@ -62,7 +67,7 @@
     
     <section id="secondary_bar">
         <div class="user">
-            <p>Dean Wen</p>
+            <p>'.$_SESSION['myusername'].'</p>
             <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
         </div>
         <div class="breadcrumbs_container">
@@ -70,10 +75,10 @@
         </div>
     </section><!-- end of secondary bar -->
         <aside id="sidebar" class="column">
-        <form class="quick_search">
+        <!-- <form class="quick_search">
             <input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=""};this._haschanged=true;">
-        </form>
-        <hr/>
+        </form> 
+        <hr/> -->
         <h3>Content</h3>
         <ul class="toggle">
             <li class="icn_tags"><a href="people.php">People</a></li>
@@ -85,11 +90,19 @@
         </ul>
         <h3>Admin</h3>
         <ul class="toggle">
-            <li class="icn_add_user"><a href="adduser.php">Add New User</a></li>
-            <li class="icn_view_users"><a href="#">View Users</a></li>
-            <li class="icn_profile"><a href="#">Your Profile</a></li>
+'?>
+
+<?php 
+    if($_SESSION['myadminlevel'] == "root")
+    echo '<li class="icn_add_user"><a href="adduser.php">Add New User</a></li>
+          <li class="icn_view_users"><a href="viewUsers.php">View Users</a></li>'
+?>
+
+<?
+        echo'
+            <li class="icn_profile"><a href="viewself.php">Your Profile</a></li>
             <li class="icn_new_article"><a href="upload.php">Upload Data</a></li>
-            <li class="icn_jump_back"><a href="#">Logout</a></li>
+            <li class="icn_jump_back"><a href="logout.php">Logout</a></li>
         </ul>
         
         <footer>
@@ -98,7 +111,6 @@
             <p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
         </footer>
     </aside><!-- end of sidebar -->
-    </header>
     <section id="main" class="column">
     <article class="module width_full">
         <header><h3 class="tabs_involved">Content Manager</h3></header>
