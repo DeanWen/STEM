@@ -1,5 +1,5 @@
 <?php
-include ("phpmydatagrid.class.php"); 
+include ("Classes/phpmydatagrid.class.php"); 
 include "layoutTemplate.php";
 
 $objGrid = new datagrid; 

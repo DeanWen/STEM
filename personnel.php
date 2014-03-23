@@ -1,5 +1,5 @@
 <?php
-include ("phpmydatagrid.class.php"); 
+include ("Classes/phpmydatagrid.class.php"); 
 include "layoutTemplate.php";
 
 $objGrid = new datagrid; 
@@ -9,7 +9,7 @@ $objGrid->methodForm("get");
 $objGrid->conectadb("localhost", "root", "", "STEM_DB");
 $objGrid->salt("Myc0defor5tr0ng3r-Pro3EctiOn"); 
 $objGrid->language("en");
-$objGrid->buttons(true,true,true,true);
+$objGrid->buttons(true,true,true,false);
 $objGrid->Form('Personnel', true);
 $objGrid->searchby("Personnel");
 $objGrid->tabla ("Personnel");

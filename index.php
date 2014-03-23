@@ -17,7 +17,7 @@
 </script>
 </head>
 <?php
-include ("phpmydatagrid.class.php"); 
+include ("Classes/phpmydatagrid.class.php"); 
 
 $objGrid = new datagrid; 
 $objGrid->closeTags(true);   
