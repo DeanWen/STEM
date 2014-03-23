@@ -39,8 +39,8 @@ function uploadFile($filetempname,$leadExcel)
     	    $DepartmentID = $objPHPExcel->getActiveSheet()->getCell("H".$j)->getValue();
     	    $sql = "INSERT INTO People VALUES('".$UID."','".$DepartmentID."','".$LastName."','".$FirstName."','".$FullName."','".$Email."','".$Phone."','".$Title."')";
     	    //echo $sql;
-    	 	mysql_query($sql,$conn);
-    	}
+        if(mysql_query($sql,$conn))
+           $msg = "success";      	}
     }
     if($leadExcel == 'school'){
       for($j=2;$j<=$highestRow;$j++)
@@ -50,8 +50,8 @@ function uploadFile($filetempname,$leadExcel)
           $OrgID = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
           $sql = "INSERT INTO School_Division VALUES('".$SchoolDivisionID."','".$SchoolDivisionName."','".$OrgID."')";
           //echo $sql;
-        mysql_query($sql,$conn);
-      }
+        if(mysql_query($sql,$conn))
+           $msg = "success";        }
     }
     if($leadExcel == 'department'){
       for($j=2;$j<=$highestRow;$j++)
@@ -61,12 +61,24 @@ function uploadFile($filetempname,$leadExcel)
           $SchoolDivisionID = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
           $sql = "INSERT INTO Department_Center VALUES('".$DepartmentID."','".$DepartmentName."','".$SchoolDivisionID."')";
           //echo $sql;
-        mysql_query($sql,$conn);
+        if(mysql_query($sql,$conn))
+           $msg = "success";  
+      }
+    }
+    if($leadExcel == 'fundingsource'){
+      for($j=2;$j<=$highestRow;$j++)
+      {
+          $FundID = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();
+          $FundName = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();
+          $ShortName = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();
+          $sql = "INSERT INTO FundingSource VALUES('".$FundID."','".$FundName."','".$ShortName."')";
+          //echo $sql;
+        if(mysql_query($sql,$conn))
+           $msg = "success";  
       }
     }
        unlink ($uploadfile); //delete uploaded file 
        mysql_close($conn); 
-       $msg = "success";  
     }else{  
        $msg = "fail";   
     }   

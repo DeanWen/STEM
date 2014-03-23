@@ -26,7 +26,7 @@
         $_SESSION['myusername']=$myusername;
         $_SESSION['myadminlevel']=$myadminlevel;
 
-        header("location: people.php");
+        header("location: stem.php");
       }
     else 
       {

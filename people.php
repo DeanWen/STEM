@@ -16,7 +16,7 @@ $objGrid->tabla ("People");
 $objGrid->keyfield("UID");
 $objGrid->datarows(20);
 $objGrid->orderby("LastName", "ASC");
-$objGrid->FormatColumn("UID", "UID", 5, 5, 0, "5", "center", "text");
+$objGrid->FormatColumn("UID", "UID", 5, 5, 0, "50", "center", "text");
 $objGrid->FormatColumn("FirstName", "First Name", 20, 20, 0, "100", "center", "text");
 $objGrid->FormatColumn("LastName", "Last Name", 20, 20, 0, "100", "center", "text");
 $objGrid->FormatColumn("FullName", "Full Name", 100, 100, 0, "100", "center","text");

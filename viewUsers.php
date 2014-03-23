@@ -18,10 +18,10 @@ $objGrid->datarows(20);
 $objGrid->orderby("LastName", "ASC");
 $objGrid->FormatColumn("UserName", "User Name", 20, 20, 0, "100", "center", "text");
 $objGrid->FormatColumn("Passcode", "Passcode", 100, 100, 0, "100", "center","text");
-$objGrid->FormatColumn("Adminlevel", "Admin level", 100, 100, 0, "100", "center","selected:general:root");
+$objGrid->FormatColumn("Adminlevel", "Admin level", 100, 100, 1, "100", "center","selected:general:root");
 $objGrid->FormatColumn("FirstName", "First Name", 20, 20, 0, "100", "center", "text");
 $objGrid->FormatColumn("LastName", "Last Name", 20, 20, 0, "100", "center", "text");
-$objGrid->FormatColumn("Email", "Email", 100, 100, 0, "100", "center","text");
+$objGrid->FormatColumn("Email", "Email", 100, 100, 0, "200", "center","text");
 $objGrid->FormatColumn("Phone", "Phone", 100, 100, 0, "100", "center","text");
 
 $objGrid -> poweredby = false;

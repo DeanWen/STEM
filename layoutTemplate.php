@@ -10,7 +10,7 @@ session_start();
         <html lang="en">
         <head>
             <meta charset="utf-8"/>
-            <title>Dashboard I Admin Panel</title>
+            <title>SERI Funding Management</title>
             
             <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
             <!--[if lt IE 9]>
@@ -71,7 +71,7 @@ session_start();
             <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
         </div>
         <div class="breadcrumbs_container">
-            <article class="breadcrumbs"><a href="index.php">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+            <article class="breadcrumbs"><a href="index.php">Index</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
         </div>
     </section><!-- end of secondary bar -->
         <aside id="sidebar" class="column">
@@ -81,12 +81,17 @@ session_start();
         <hr/> -->
         <h3>Content</h3>
         <ul class="toggle">
-            <li class="icn_tags"><a href="people.php">People</a></li>
-            <li class="icn_tags"><a href="#">Program/Keyword/Audience</a></li>
             <li class="icn_tags"><a href="STEM.php">STEM Program</a></li>
+            <li class="icn_tags"><a href="people.php">People</a></li>
             <li class="icn_tags"><a href="fundingsource.php">Funding Source</a></li>
-            <li class="icn_tags"><a href="grant.php">Grant/Personnel</a></li>
-            <li class="icn_tags"><a href="deptSchOrg.php">Department/School/Organization</a></li>
+            <li class="icn_tags"><a href="grant.php">Grant</a></li>
+            <li class="icn_tags"><a href="department.php">Department</a></li>
+            <li class="icn_tags"><a href="school.php">School</a></li>
+            <li class="icn_tags"><a href="organization.php">Organization</a></li>
+            <li class="icn_tags"><a href="audience.php">Audience</a></li>
+            <li class="icn_tags"><a href="keyword.php">Keyword</a></li>
+            <li class="icn_tags"><a href="personnel.php">Personnel</a></li> 
+            <li class="icn_tags"><a href="#">Program/Keyword/Audience</a></li>
         </ul>
         <h3>Admin</h3>
         <ul class="toggle">
@@ -107,8 +112,8 @@ session_start();
         
         <footer>
             <hr />
-            <p><strong>Copyright &copy; 2014 IUPUI STEM</strong></p>
-            <p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+            <p><strong>Copyright &copy; 2014 IUPUI SERI</strong></p>
+            <p>Theme by <a href="#">MediaLoot</a></p>
         </footer>
     </aside><!-- end of sidebar -->
     <section id="main" class="column">
