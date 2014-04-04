@@ -33,6 +33,13 @@ buildBody();
 </form>
 <br/>
 
+<form name="form6" method="post" enctype="multipart/form-data" action="upload_excel.php">
+<input type="hidden" name="leadExcel" value="stem">
+<h1>Upload STEM program</h1>
+<input type="file" name="inputExcel"><input type="submit" name="import" value="upload">
+</form>
+<br/>
+
 
 <?
 	buildBottom();

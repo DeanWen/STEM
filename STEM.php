@@ -23,7 +23,7 @@ $objGrid->FormatColumn("UID", "PI", 50, 50, 0, "100", "center", "select:SELECT U
 $objGrid->FormatColumn("FundID", "Funding Source", 50, 50, 0, "80", "center", "select:SELECT FundID, EntityShortName FROM FundingSource");
 $objGrid->FormatColumn("GrantID", "GrantName", 50, 50, 0, "80", "center", "select:SELECT GrantID, GrantName FROM GrantProgram");
 $objGrid->FormatColumn("Relationship", "Relationship", 50, 50, 0, "50", "center", "text");
-$objGrid->FormatColumn("FundingAmount", "Amount", 50, 50, 0, "10", "center", "integer");
+$objGrid->FormatColumn("FundingAmount", "Amount", 50, 50, 0, "50", "center", "integer");
 $objGrid->FormatColumn("StartDate", "Start Date", 50, 50, 0, "80", "center", "text");
 $objGrid->FormatColumn("EndDate", "End Date", 50, 50, 0, "80", "center", "text");
 $objGrid->FormatColumn("ProjectURL", "Project URL", 50, 50, 0, "100", "center", "text");
